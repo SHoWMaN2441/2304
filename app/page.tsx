@@ -1,7 +1,6 @@
 "use client";
 import { Users } from "@/helpers/types";
 import { createClient } from "@/utils/client";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 
 export default function Home() {
