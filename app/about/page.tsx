@@ -1,10 +1,8 @@
-
 import Image from "next/image";
-
 
 export default function MalumotPage() {
   return (
-    <div  >
+    <div>
       <div className="max-w-[912px] w-[100%] h-[398px] mt-[22px]">
         <div className="flex flex-col gap-[8px] ">
           <h1 className="text-white font-bold  text-[32px] ">Men haqimda</h1>
@@ -13,16 +11,16 @@ export default function MalumotPage() {
         <div className="max-w-[912px] w-[100%] h-[243px] flex flex-col mt-[20px] gap-[10px]">
           <p className="font-medium  text-[18px] text-gray-300  ">
             Men Habibulloyev Yaxyobek veb dasturchisiman. Yoshim 18 da, Andijon
-            viloyati Oltinko`l tumanida tug'ilganman. Qiziqarli, ko`p
+            viloyati Oltinko`l tumanida tug`ilganman. Qiziqarli, ko`p
             funksionallika ega bo`lgan va kuchli dizaynga ega bo`lgan dasturlar
             yaratishga qiziqaman.
           </p>
           <p className="font-medium  text-[18px] text-gray-300 ">
             Mening vazifam veb saytni foydalanuvchilarga qulay, sayt dizayni
-            foydalanuvchilarga jalb qiluvchi lekin ayni paytda tezkor bo'lishini
+            foydalanuvchilarga jalb qiluvchi lekin ayni paytda tezkor bo`lishini
             taminlashdir va saytni moslashuvchan kodlar bilan yaratishdir!
             Mening maqsadim veb sayt foydalanuvchilariga barcha qismlarini
-            intuitiv va qulay bo'lishga harakat qilishga qaratilgan. Agar sizga
+            intuitiv va qulay bo`lishga harakat qilishga qaratilgan. Agar sizga
             men yaratgan loyihalarim qiziq bo`lsa Loyihalar sahifasiga tashrif
             buyurishingiz mumkin
           </p>
@@ -125,9 +123,7 @@ export default function MalumotPage() {
             <Image src={"/market.svg"} alt="photo" width={114} height={66} />
           </div>
           <div className="w-[213px] h-[124px]  bg-[#1A1A1A] rounded-[12px] flex items-center justify-center"></div>
-          <div className="w-[213px] h-[124px]  bg-[#1A1A1A] rounded-[12px] flex items-center justify-center">
-           
-          </div>
+          <div className="w-[213px] h-[124px]  bg-[#1A1A1A] rounded-[12px] flex items-center justify-center"></div>
         </div>
       </div>
     </div>

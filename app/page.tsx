@@ -44,7 +44,7 @@ export default function Home() {
             <span className="text-green-700">{user.name}</span> man
           </h1>
           <p className="text-[18px] text-center text-gray-500 font-medium">
-            Veb dasturchi va dizayner sifatida natijaga yo'naltirilgan ishchi.
+            Veb dasturchi va dizayner sifatida natijaga yo`naltirilgan ishchi.
             Veb-saytlar va veb-ilovalarni yaratish va boshqarish orqali umumiy
             mahsulot muvaffaqiyatiga erishish maqsadimdir.
           </p>

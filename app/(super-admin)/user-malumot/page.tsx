@@ -100,7 +100,7 @@ export default function UserPage() {
       if (error) {
         console.log("Xatolik:", error.message);
       } else {
-        console.log("Ma'lumot muvaffaqiyatli qo'shildi!");
+        console.log("Ma'lumot muvaffaqiyatli qo`shildi!");
       }
     } catch (error) {
       console.log("Xatolik:", error);
@@ -238,7 +238,7 @@ export default function UserPage() {
               onChange={(e) => setProjectTalab(e.target.value)}
               className="w-[280px] h-[44px] rounded-[8px] border-1 border-[#FFFFFF40] pl-[20px] text-gray-300"
               type="text"
-              placeholder="Talab (past, o'rta, yuqori)"
+              placeholder="Talab (past, o`rta, yuqori)"
             />
             <input
               onChange={handleProjectTags}
