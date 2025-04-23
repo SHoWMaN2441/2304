@@ -78,17 +78,6 @@ export default function UserPage() {
 
   async function handleSave() {
     try {
-      const obj = {
-        name,
-        email,
-        telephone,
-        github,
-        telegram,
-        imageUrl,
-        fields,
-        aboutme,
-      };
-
       const { error } = await supabase.from("userdata").insert([
         {
           name,
