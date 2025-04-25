@@ -6,7 +6,7 @@ import Link from "next/link";
 
 interface Loyiha {
   id: number;
-  image: string;
+  imageUrl: string;
   name: string;
   talab: string;
   tags: string[] | string;
@@ -54,7 +54,7 @@ export default function LoyihaPage() {
           >
             <div>
               <Image
-                src={loyiha.image}
+                src={loyiha.imageUrl}
                 alt={`Image of ${loyiha.name}`}
                 width={444}
                 height={240}

@@ -39,11 +39,11 @@ export default function RootLayout({
             onClick={() => setOpen(true)}
             className={`
         transition-all duration-200 ease-in-out
-        min-h-screen
+        min-h-screen p-2
         bg-[#1B1B1B]
         ${
           open
-            ? "translate-x-0 opacity-100 w-[288px]"
+            ? "translate-x-0 opacity-100 w-[300px]"
             : "-translate-x-full opacity-0 w-[164px]"
         }
         overflow-hidden

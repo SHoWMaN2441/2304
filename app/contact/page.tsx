@@ -74,7 +74,7 @@ export default function ContactPage() {
           <div className="w-[872px] h-[224px] flex flex-col gap-[8px] mt-[20px]">
             <p className="text-white font-normal text-[16px]">Izohingiz*</p>
             <textarea
-              defaultValue={"O`z izohingizni kiriting"}
+              placeholder={"O`z izohingizni kiriting"}
               className="w-full h-[192px] p-[10px] rounded-[8px] border border-[#FFFFFF40] text-gray-300 font-normal text-[16px]"
             />
           </div>
@@ -83,8 +83,6 @@ export default function ContactPage() {
     </div>
   );
 }
-
-
 
 function ContactCard({
   icon,

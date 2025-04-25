@@ -38,7 +38,7 @@ export default function Side_bar() {
 
   return (
     <div className="bg-[#1B1B1B]">
-      <div className="max-w-[287px] border-b-1 border-[#FFFFFF40] mb-[14px] h-[40px] w-[100%] flex items-center gap-[14px] pl-[14px] ">
+      <div className="max-w-[350px] border-b-1 border-[#FFFFFF40] mb-[14px] h-[40px] w-[100%] flex items-center gap-[14px] pl-[14px] ">
         <Image src={"/chapImg.svg"} alt="Image" width={24} height={24} />
         <Image src={"/ongImg.svg"} alt="Image" width={24} height={24} />
         <Image src={"/refresh.svg"} alt="Image" width={24} height={24} />
