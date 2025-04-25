@@ -10,8 +10,8 @@ export default function MalumotPage() {
         </div>
         <div className="max-w-[912px] w-[100%] h-[243px] flex flex-col mt-[20px] gap-[10px]">
           <p className="font-medium  text-[18px] text-gray-300  ">
-            Men Habibulloyev Yaxyobek veb dasturchisiman. Yoshim 18 da, Andijon
-            viloyati Oltinko`l tumanida tug`ilganman. Qiziqarli, ko`p
+            Men Husanov Azizbek veb dasturchisiman. Yoshim 18 da, Buxoro
+            viloyati Buxoro shahrida tug`ilganman. Qiziqarli, ko`p
             funksionallika ega bo`lgan va kuchli dizaynga ega bo`lgan dasturlar
             yaratishga qiziqaman.
           </p>
