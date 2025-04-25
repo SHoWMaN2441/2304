@@ -14,7 +14,7 @@ export default function Header() {
         onClick={() => setOpen(!open)} // toggle qilish uchun
         className="w-[182px] h-[32px] flex items-center justify-between"
       >
-        <button className="cursor-pointer">
+        <button className="cursor-pointer mr-2">
           <Image
             src={"/hamburger.svg"}
             alt="hamburger"
@@ -23,7 +23,9 @@ export default function Header() {
           />
         </button>
         <Link href={"/"}>
-          <Image src={"/logo.svg"} alt="logo" width={136} height={28} />
+          <p className="text-white text-[20px]">
+            HUSANOV <span className="text-green-600">.UZ</span>
+          </p>
         </Link>
       </div>
       <div className="max-w-[419px] h-[32px] w-full flex items-center justify-between">
