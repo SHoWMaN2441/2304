@@ -6,6 +6,10 @@ import { createClient } from "@/utils/client";
 import Image from "next/image";
 import { useState } from "react";
 
+interface Tool {
+  image: string;
+  hoverText: string;
+}
 export default function UserPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -19,33 +23,81 @@ export default function UserPage() {
   const [projectName, setProjectName] = useState("");
   const [projectTalab, setProjectTalab] = useState("");
   const [projectTags, setProjectTags] = useState<string[]>([]);
-  const [tools, setTools] = useState<string[]>([
-    "/htmlCard.svg",
-    "/cssCard.svg",
-    "/jsCard.svg",
-    "/figma.svg",
-    "/react.svg",
-    "/vue.svg",
-    "/a1.svg",
-    "/a2.svg",
+  const [aboutMe, setAboutMe] = useState("");
+  const [tools, setTools] = useState<Tool[]>([
+    { image: "/htmlCard.svg", hoverText: "" },
+    { image: "/cssCard.svg", hoverText: "" },
+    { image: "/jsCard.svg", hoverText: "" },
+    { image: "/figma.svg", hoverText: "" },
+    { image: "/react.svg", hoverText: "" },
+    { image: "/vue.svg", hoverText: "" },
+    { image: "/a1.svg", hoverText: "" },
+    { image: "/a2.svg", hoverText: "" },
   ]);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [mainImageUrl, setMainImageUrl] = useState("");
+  const [nameForHover, setNameForHover] = useState("");
 
   const handleAddTool = () => {
     const newTool = prompt(
       "Yangi texnologiya rasmi manzilini kiriting (masalan: /newtech.svg)"
     );
     if (newTool) {
-      setTools((prev) => [...prev, newTool]);
+      setTools((prev) => [...prev, { image: newTool, hoverText: "" }]);
     }
   };
+  const handleHoverTextChange = (index: number, text: string) => {
+    const updatedTools = [...tools];
+    updatedTools[index].hoverText = text;
+    setTools(updatedTools);
+  };
 
-  // const handleasbobuskunalar = () => {
-  //   console.log("Saqlangan texnologiyalar:", tools);
-  // };
   const handleDeleteTool = (index: number) => {
     const updatedTools = [...tools];
     updatedTools.splice(index, 1);
     setTools(updatedTools);
+  };
+
+  const handleasbobuskunalar = async () => {
+    if (!aboutMe || !mainImageUrl || !nameForHover) {
+      alert("Iltimos barcha maydonlarni to'ldiring");
+      return;
+    }
+
+    const { error } = await supabase.from("aboutpage").insert([
+      {
+        aboutme: aboutMe,
+        asbob_uskunalar: tools,
+        imageUrl: mainImageUrl,
+        name_for_hover: nameForHover,
+      },
+    ]);
+
+    if (error) {
+      console.error("Saqlashda xatolik:", error);
+      alert("Xatolik yuz berdi!");
+    } else {
+      alert("Ma'lumotlar muvaffaqiyatli saqlandi!");
+      setAboutMe("");
+      setTools([]);
+      setMainImageUrl("");
+      setNameForHover("");
+    }
+  };
+
+  const handleMainImageUpload = async (file: File) => {
+    const { data, error } = await supabase.storage
+      .from("products")
+      .upload(`aboutpage-main/${Date.now()}-${file.name}`, file);
+
+    if (error) {
+      console.error("Rasm yuklashda xato:", error);
+      return;
+    }
+
+    const url = supabase.storage.from("products").getPublicUrl(data.path)
+      .data.publicUrl;
+    setMainImageUrl(url);
   };
 
   const supabase = createClient();
@@ -299,15 +351,16 @@ export default function UserPage() {
         </div>
       </div>
 
-      <div className="max-w-[912px] h-[610px] flex flex-col gap-[24px] mt-[40px] ">
+      {/* <div className="max-w-[912px] h-[610px] flex flex-col gap-[24px] mt-[40px] ">
         <div className="h-[65px] flex flex-col gap-[8px]">
           <h1 className="text-white font-bold text-[28px]">About Page uchun</h1>
           <Image src={"/border.svg"} alt="photo" width={112} height={8} />
         </div>
-        <div className="max-w-[912px  ] w-[100%] h-[243px] flex flex-col bg-[#1B1B1B] p-[20px] mt-[20px] gap-[10px]">
+
+        <div className="max-w-[912px] h-[1570px] bg-[#1B1B1B] flex flex-col gap-[40px] rounded-[12px] p-[20px] ">
           <div className="h-[65px] flex flex-col gap-[8px]">
             <h1 className="text-white font-bold text-[24px]">Men haqimda</h1>
-            <Image src={"/order.svg"} alt="photo" width={112} height={8} />
+            <Image src={"/border.svg"} alt="photo" width={112} height={8} />
           </div>
           <textarea
             className="border-1 bg-[#1B1B1B] border-[#FFFFFF40] pl-[20px] pt-[10px] w-[100%] text-gray-300 h-[160px] rounded-[8px]"
@@ -315,9 +368,6 @@ export default function UserPage() {
             placeholder="O`zingiz haqida..."
             id=""
           ></textarea>
-        </div>
-
-        <div className="max-w-[912px] h-[570px] bg-[#1B1B1B] flex flex-col gap-[40px] rounded-[12px] p-[20px] overflow-y-auto">
           <div className="w-[912px] flex flex-col gap-[24px]">
             <div className="flex flex-col gap-[8px]">
               <h3 className="text-white font-bold text-[24px]">
@@ -358,15 +408,126 @@ export default function UserPage() {
               </button>
             </div>
           </div>
+          <button
+            onClick={handleasbobuskunalar}
+            className="w-[178px] h-[40px] bg-[#39965F] rounded-[8px] text-white text-[16px] font-normal flex items-center justify-center"
+          >
+            Saqlash
+          </button>
+        </div>
+      </div> */}
+      <div className="max-w-[912px] h-auto flex flex-col gap-[24px] mt-[40px]">
+        <div className="h-[65px] flex flex-col gap-[8px]">
+          <h1 className="text-white font-bold text-[28px]">About Page uchun</h1>
+          <Image src={"/border.svg"} alt="photo" width={112} height={8} />
+        </div>
 
-          <div className="w-full flex flex-col justify-end">
-            <button
-              onClick={handleSave}
-              className="w-[178px] h-[40px] bg-[#39965F] rounded-[8px] text-white text-[16px] font-normal flex items-center justify-center"
-            >
-              Saqlash
-            </button>
+        <div className="max-w-[912px] bg-[#1B1B1B] flex flex-col gap-[40px] rounded-[12px] p-[20px]">
+          {/* Men haqimda */}
+          <div className="h-[65px] flex flex-col gap-[8px]">
+            <h1 className="text-white font-bold text-[24px]">Men haqimda</h1>
+            <Image src={"/border.svg"} alt="photo" width={112} height={8} />
           </div>
+
+          <textarea
+            className="border-1 bg-[#1B1B1B] border-[#FFFFFF40] pl-[20px] pt-[10px] w-[100%] text-gray-300 h-[160px] rounded-[8px]"
+            name="aboutme"
+            placeholder="O`zingiz haqida..."
+            value={aboutMe}
+            onChange={(e) => setAboutMe(e.target.value)}
+          />
+
+          {/* Main Image Upload */}
+          <div className="flex flex-col gap-2">
+            <input
+              type="file"
+              onChange={(e) => {
+                if (e.target.files?.[0]) {
+                  handleMainImageUpload(e.target.files[0]);
+                }
+              }}
+              className="text-white"
+            />
+            {mainImageUrl && (
+              <Image
+                src={mainImageUrl}
+                alt="Main"
+                width={300}
+                height={150}
+                className="rounded-md"
+              />
+            )}
+          </div>
+
+          {/* Main Image Hover Name */}
+          <input
+            type="text"
+            value={nameForHover}
+            onChange={(e) => setNameForHover(e.target.value)}
+            placeholder="Main rasm uchun hover name"
+            className="w-full p-2 bg-[#1B1B1B] border-[#FFFFFF40] text-white border rounded-[8px]"
+          />
+
+          {/* Asbob-uskuna */}
+          <div className="w-[912px] flex flex-col gap-[24px]">
+            <div className="flex flex-col gap-[8px]">
+              <h3 className="text-white font-bold text-[24px]">
+                Asbob-uskunalar
+              </h3>
+              <Image src={"/border.svg"} alt="border" width={112} height={8} />
+            </div>
+
+            <div className="max-w-[912px] w-full flex flex-wrap gap-[10px]">
+              {tools.map((tool, index) => (
+                <div
+                  key={index}
+                  className="relative group w-[213px] flex flex-col items-center"
+                >
+                  <div className="relative w-[213px] h-[124px] rounded-[12px] overflow-hidden">
+                    <Image
+                      src={tool.image}
+                      alt="tool"
+                      width={213}
+                      height={124}
+                      className="rounded-[12px]"
+                    />
+                    <button
+                      onClick={() => handleDeleteTool(index)}
+                      className="absolute cursor-pointer top-2 right-2 bg-red-600 text-white w-6 h-6 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition"
+                      title="O'chirish"
+                    >
+                      ×
+                    </button>
+                  </div>
+
+                  {/* Hover Text Input */}
+                  <input
+                    type="text"
+                    value={tool.hoverText}
+                    onChange={(e) =>
+                      handleHoverTextChange(index, e.target.value)
+                    }
+                    placeholder="Hover matn"
+                    className="w-full p-1 mt-2 bg-[#1B1B1B] border border-[#FFFFFF40] text-white rounded-[8px]"
+                  />
+                </div>
+              ))}
+
+              <button
+                onClick={handleAddTool}
+                className="w-[213px] cursor-pointer h-[124px] border-2 border-dashed border-[#39965F] flex items-center justify-center rounded-[12px] text-white text-[48px] font-bold hover:bg-[#39965F] transition"
+              >
+                +
+              </button>
+            </div>
+          </div>
+
+          <button
+            onClick={handleasbobuskunalar}
+            className="w-[178px] h-[40px] bg-[#39965F] rounded-[8px] text-white text-[16px] font-normal flex items-center justify-center"
+          >
+            Saqlash
+          </button>
         </div>
       </div>
     </div>
