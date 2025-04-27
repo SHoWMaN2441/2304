@@ -19,6 +19,35 @@ export default function UserPage() {
   const [projectName, setProjectName] = useState("");
   const [projectTalab, setProjectTalab] = useState("");
   const [projectTags, setProjectTags] = useState<string[]>([]);
+  const [tools, setTools] = useState<string[]>([
+    "/htmlCard.svg",
+    "/cssCard.svg",
+    "/jsCard.svg",
+    "/figma.svg",
+    "/react.svg",
+    "/vue.svg",
+    "/a1.svg",
+    "/a2.svg",
+  ]);
+
+  const handleAddTool = () => {
+    const newTool = prompt(
+      "Yangi texnologiya rasmi manzilini kiriting (masalan: /newtech.svg)"
+    );
+    if (newTool) {
+      setTools((prev) => [...prev, newTool]);
+    }
+  };
+
+  const handleasbobuskunalar = () => {
+    console.log("Saqlangan texnologiyalar:", tools);
+    // API yuborish uchun kod yozilsa bo'ladi
+  };
+  const handleDeleteTool = (index: number) => {
+    const updatedTools = [...tools];
+    updatedTools.splice(index, 1);
+    setTools(updatedTools);
+  };
 
   const supabase = createClient();
 
@@ -109,9 +138,11 @@ export default function UserPage() {
 
   return (
     <div className=" text-white pt-[32px] min-h-screen">
-      <div className="w-[912px] h-[610px] flex flex-col gap-[24px]">
+      <div className="max-w-[912px] h-[610px] flex flex-col gap-[24px]">
         <div className=" h-[65px]  flex flex-col  gap-[8px]  ">
-          <h1 className="text-white  font-bold text-[28px]">Shahsiy aboutme</h1>
+          <h1 className="text-white  font-bold text-[28px]">
+            Side-bar malumot
+          </h1>
           <Image src={"/border.svg"} alt="photo" width={112} height={8} />
         </div>
         <div className="w-[912px] h-[570px] bg-[#1B1B1B] flex flex-col gap-[210px]  rounded-[12px] p-[20px]">
@@ -220,7 +251,7 @@ export default function UserPage() {
           </div>
         </div>
       </div>
-      <div className="w-[912px] h-auto flex flex-col gap-[24px] mt-[80px]">
+      <div className="max-w-[912px] h-auto flex flex-col gap-[24px] mt-[80px]">
         <div className="h-[65px] flex flex-col gap-[8px]">
           <h1 className="text-white font-bold text-[28px]">Loyihalar</h1>
         </div>
@@ -265,6 +296,66 @@ export default function UserPage() {
           >
             Loyihani Saqlash
           </button>
+        </div>
+      </div>
+      <div className="min-w-[912px] h-[610px] flex flex-col gap-[24px] mt-[40px]">
+        <div className="h-[65px] flex flex-col gap-[8px]">
+          <h1 className="text-white font-bold text-[28px]">About Page uchun</h1>
+          <Image src={"/border.svg"} alt="photo" width={112} height={8} />
+        </div>
+
+        <div className="w-[912px] h-[570px] bg-[#1B1B1B] flex flex-col gap-[40px] rounded-[12px] p-[20px] overflow-y-auto">
+          <div className="w-[912px] flex flex-col gap-[24px]">
+            <div className="flex flex-col gap-[8px]">
+              <h3 className="text-white font-bold text-[24px]">
+                Asbob-uskunalar
+              </h3>
+              <Image src={"/border.svg"} alt="border" width={112} height={8} />
+            </div>
+
+            <div className="max-w-[912px] w-full flex flex-wrap gap-[10px]">
+              {tools.map((tool, index) => (
+                <div
+                  key={index}
+                  className="relative group w-[213px] h-[124px] rounded-[12px] overflow-hidden"
+                >
+                  <Image
+                    src={tool}
+                    alt="tool"
+                    width={213}
+                    height={124}
+                    className="rounded-[12px]"
+                  />
+
+                  {/* O'chirish tugmasi */}
+                  <button
+                    onClick={() => handleDeleteTool(index)}
+                    className="absolute cursor-pointer top-2 right-2 bg-red-600 text-white w-6 h-6 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition"
+                    title="O'chirish"
+                  >
+                    ×
+                  </button>
+                </div>
+              ))}
+
+              {/* Plus (+) tugma */}
+              <button
+                onClick={handleAddTool}
+                className="w-[213px] cursor-pointer h-[124px] border-2 border-dashed border-[#39965F] flex items-center justify-center rounded-[12px] text-white text-[48px] font-bold hover:bg-[#39965F] transition"
+              >
+                +
+              </button>
+            </div>
+          </div>
+
+          <div className="w-full flex flex-col justify-end">
+            <button
+              onClick={handleSave}
+              className="w-[178px] h-[40px] bg-[#39965F] rounded-[8px] text-white text-[16px] font-normal flex items-center justify-center"
+            >
+              Saqlash
+            </button>
+          </div>
         </div>
       </div>
     </div>

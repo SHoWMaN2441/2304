@@ -9,13 +9,14 @@ export default function Header() {
   const { open, setOpen } = useGamburgerStore(); // open holatini ham chaqiramiz
 
   return (
-    <div className="max-w-[1240px] mx-auto w-full h-[48px] flex justify-between items-center border-b-1 border-[#FFFFFF40] rounded-t-[13px] bg-[#1A1A1A] border-2 px-1">
+    <div className="max-w-[full] mx-auto w-full h-[48px] flex justify-between items-center border-b-1 border-[#FFFFFF40] rounded-t-[13px] bg-[#1A1A1A] border-2 px-1">
       <div
-        onClick={() => setOpen(!open)} // toggle qilish uchun
+        // toggle qilish uchun
         className="w-[182px] h-[32px] flex items-center justify-between"
       >
         <button className="cursor-pointer mr-2">
           <Image
+            onClick={() => setOpen(!open)}
             src={"/hamburger.svg"}
             alt="hamburger"
             width={32}

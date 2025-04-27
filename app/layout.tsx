@@ -26,14 +26,14 @@ export default function RootLayout({
     <html lang="en">
       <body
         style={{ backgroundImage: "url('/banner1.svg')" }}
-        className={`${poppins.className}   antialiased bg-cover`}
+        className={`${poppins.className} mx-auto container   antialiased bg-cover`}
       >
-        <div className="container max-w-full w-full  bg-[#1A1A1A]">
+        <div className=" max-w-full w-full mx-auto  bg-[#1A1A1A]">
           {!blockedPages.includes(pathname) ? <Header /> : ""}
         </div>
         <div
           style={{ backgroundImage: "url('/body.svg')" }}
-          className="flex container max-w-[1240px] w-full mx-auto min-h-screen"
+          className="flex  max-w-[full] w-full mx-auto min-h-screen"
         >
           <div
             onClick={() => setOpen(true)}
