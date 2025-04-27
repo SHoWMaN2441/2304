@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Users } from "@/helpers/types";
 import { createClient } from "@/utils/client";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 export default function ContactPage() {
   const [users, setUsers] = useState<Users[]>([]);
@@ -30,15 +31,26 @@ export default function ContactPage() {
   const user = users[0] || {};
 
   return (
-    <div className="mt-[32px] mb-[32px]">
-      <div className="max-w-[912px] w-full h-[278px] flex flex-col gap-[24px]">
+    <div className="mt-[45px] ">
+      <div className="max-w-[912px] w-full max-h-[278px] flex flex-col gap-[24px] mb-[32px]">
         <div className="w-[912px] h-[190px] flex justify-between">
-          <ContactCard icon="/gmail.svg" label="E-pochta" value={user.email} />
-          <ContactCard
-            icon="/telegram.svg"
-            label="Telegram"
-            value={user.telegram}
-          />
+          <Link
+            href={`mailto:${user.email}`}
+            className="w-[290px] h-[190px] flex items-center justify-center bg-[#1B1B1B] rounded-[12px] border border-[#FFFFFF40]"
+          >
+            <ContactCard
+              icon="/gmail.svg"
+              label="E-pochta"
+              value={user.email}
+            />
+          </Link>
+          <Link href={`https://t.me/${user.telegram}`} target="_blank">
+            <ContactCard
+              icon="/telegram.svg"
+              label="Telegram"
+              value={user.telegram}
+            />
+          </Link>
           <ContactCard
             icon="/contact.svg"
             label="Telefon raqam"
@@ -47,7 +59,7 @@ export default function ContactPage() {
         </div>
       </div>
 
-      <div className="w-[912px] h-[502px] flex flex-col mt-[64px] gap-[24px]">
+      <div className="w-[912px] h-[502px] flex flex-col  gap-[24px]">
         <div className="w-[226px] h-[65px] flex flex-col gap-[8px]">
           <h1 className="text-white font-bold text-[28px]">So`rov yuborish</h1>
           <Image src={"/border.svg"} alt="photo" width={112} height={8} />

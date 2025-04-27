@@ -2,6 +2,7 @@
 import { Users } from "@/helpers/types";
 import { createClient } from "@/utils/client";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function Side_bar() {
@@ -72,17 +73,27 @@ export default function Side_bar() {
           </div>
 
           <div className="min-w-[288px] h-[244px] mt-[14px] flex flex-col items-center gap-[14px]">
-            <ContactBlock
-              icon="/gmail.svg"
-              label="E-pochta"
-              value={user.email}
-            />
-            <ContactBlock icon="/git.svg" label="Github" value={user.github} />
-            <ContactBlock
-              icon="/telegram.svg"
-              label="Telegram"
-              value={user.telegram}
-            />
+            <Link href={`mailto:${user.email}`} target="_blank">
+              <ContactBlock
+                icon="/gmail.svg"
+                label="E-pochta"
+                value={user.email}
+              />
+            </Link>
+            <Link href={`https://github.com/${user.github}`} target="_blank">
+              <ContactBlock
+                icon="/git.svg"
+                label="Github"
+                value={user.github}
+              />
+            </Link>
+            <Link href={`https://t.me/${user.telegram}`} target="_blank">
+              <ContactBlock
+                icon="/telegram.svg"
+                label="Telegram"
+                value={user.telegram}
+              />
+            </Link>
             <ContactBlock
               icon="/contact.svg"
               label="Telefon raqam"
