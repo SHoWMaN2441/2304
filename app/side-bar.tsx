@@ -46,7 +46,7 @@ export default function Side_bar() {
 
       {user ? (
         <>
-          <div className="max-[287px] w-[100%] h-[376px] border-b-1 pl-[14px] border-[#FFFFFF40]">
+          <div className="max-w-[287px] w-[100%] h-[376px] border-b-1 pl-[14px] border-[#FFFFFF40]">
             <Image
               className="rounded-[10px]"
               src={user.imageUrl || "/default-user.png"}
@@ -59,7 +59,7 @@ export default function Side_bar() {
                 {user.name}
               </p>
             </div>
-            <div className="max-[259px] w-[100%] mt-[20px] h-[62px] flex flex-wrap gap-[10px]">
+            <div className="max-w-[259px] w-[100%] mt-[20px] h-[62px] flex flex-wrap  gap-[10px]">
               {user.fields?.map((item, index) => (
                 <div
                   key={index}
@@ -71,7 +71,7 @@ export default function Side_bar() {
             </div>
           </div>
 
-          <div className="max-w-[288px] h-[244px] mt-[14px] flex flex-col items-center gap-[14px]">
+          <div className="min-w-[288px] h-[244px] mt-[14px] flex flex-col items-center gap-[14px]">
             <ContactBlock
               icon="/gmail.svg"
               label="E-pochta"
@@ -109,7 +109,7 @@ function ContactBlock({
   return (
     <div className="w-[260px] h-[47px] flex gap-[10px]">
       <Image src={icon} alt={label} width={44} height={44} />
-      <div className="width-[171px] h-[47px] flex flex-col gap-[15px]">
+      <div className="min-w-[171px] h-[47px] flex flex-col gap-[15px]">
         <h5 className="font-medium text-white text-[16px] mt-[10px] leading-1">
           {label}
         </h5>

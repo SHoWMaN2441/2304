@@ -41,7 +41,7 @@ export default function UserPage() {
 
   const handleasbobuskunalar = () => {
     console.log("Saqlangan texnologiyalar:", tools);
-    // API yuborish uchun kod yozilsa bo'ladi
+    // API yuborish uchun kod yozilsa bo`ladi
   };
   const handleDeleteTool = (index: number) => {
     const updatedTools = [...tools];
@@ -129,7 +129,7 @@ export default function UserPage() {
       if (error) {
         console.log("Xatolik:", error.message);
       } else {
-        console.log("Ma'lumot muvaffaqiyatli qo`shildi!");
+        console.log("Ma`lumot muvaffaqiyatli qo`shildi!");
       }
     } catch (error) {
       console.log("Xatolik:", error);
@@ -137,8 +137,8 @@ export default function UserPage() {
   }
 
   return (
-    <div className=" text-white pt-[32px] min-h-screen">
-      <div className="max-w-[912px] h-[610px] flex flex-col gap-[24px]">
+    <div className=" text-white pt-[32px] min-h-screen mx-auto w-full">
+      <div className="max-w-[912px]  h-[610px] flex flex-col gap-[24px]">
         <div className=" h-[65px]  flex flex-col  gap-[8px]  ">
           <h1 className="text-white  font-bold text-[28px]">
             Side-bar malumot
@@ -254,6 +254,7 @@ export default function UserPage() {
       <div className="max-w-[912px] h-auto flex flex-col gap-[24px] mt-[80px]">
         <div className="h-[65px] flex flex-col gap-[8px]">
           <h1 className="text-white font-bold text-[28px]">Loyihalar</h1>
+          <Image src={"/border.svg"} alt="photo" width={112} height={8} />
         </div>
         <div className="w-[912px] bg-[#1B1B1B] rounded-[12px] p-[20px] flex flex-col gap-[20px]">
           <div className="flex flex-wrap gap-[20px]">
@@ -298,13 +299,26 @@ export default function UserPage() {
           </button>
         </div>
       </div>
-      <div className="min-w-[912px] h-[610px] flex flex-col gap-[24px] mt-[40px]">
+
+      <div className="max-w-[912px] h-[610px] flex flex-col gap-[24px] mt-[40px] ">
         <div className="h-[65px] flex flex-col gap-[8px]">
           <h1 className="text-white font-bold text-[28px]">About Page uchun</h1>
           <Image src={"/border.svg"} alt="photo" width={112} height={8} />
         </div>
+        <div className="max-w-[912px  ] w-[100%] h-[243px] flex flex-col bg-[#1B1B1B] p-[20px] mt-[20px] gap-[10px]">
+          <div className="h-[65px] flex flex-col gap-[8px]">
+            <h1 className="text-white font-bold text-[24px]">Men haqimda</h1>
+            <Image src={"/border.svg"} alt="photo" width={112} height={8} />
+          </div>
+          <textarea
+            className="border-1 bg-[#1B1B1B] border-[#FFFFFF40] pl-[20px] pt-[10px] w-[100%] text-gray-300 h-[160px] rounded-[8px]"
+            name="o`zingiz haqida batafsilroq"
+            placeholder="O`zingiz haqida..."
+            id=""
+          ></textarea>
+        </div>
 
-        <div className="w-[912px] h-[570px] bg-[#1B1B1B] flex flex-col gap-[40px] rounded-[12px] p-[20px] overflow-y-auto">
+        <div className="max-w-[912px] h-[570px] bg-[#1B1B1B] flex flex-col gap-[40px] rounded-[12px] p-[20px] overflow-y-auto">
           <div className="w-[912px] flex flex-col gap-[24px]">
             <div className="flex flex-col gap-[8px]">
               <h3 className="text-white font-bold text-[24px]">
@@ -327,18 +341,16 @@ export default function UserPage() {
                     className="rounded-[12px]"
                   />
 
-                  {/* O'chirish tugmasi */}
                   <button
                     onClick={() => handleDeleteTool(index)}
                     className="absolute cursor-pointer top-2 right-2 bg-red-600 text-white w-6 h-6 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition"
-                    title="O'chirish"
+                    title="o`chirish"
                   >
                     ×
                   </button>
                 </div>
               ))}
 
-              {/* Plus (+) tugma */}
               <button
                 onClick={handleAddTool}
                 className="w-[213px] cursor-pointer h-[124px] border-2 border-dashed border-[#39965F] flex items-center justify-center rounded-[12px] text-white text-[48px] font-bold hover:bg-[#39965F] transition"
