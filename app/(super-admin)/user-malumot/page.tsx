@@ -34,7 +34,6 @@ export default function UserPage() {
     { image: "/a1.svg", hoverText: "" },
     { image: "/a2.svg", hoverText: "" },
   ]);
-  const [mainImageUrl, setMainImageUrl] = useState("");
   const [nameForHover, setNameForHover] = useState("");
 
   const handleAddTool = () => {
@@ -58,7 +57,7 @@ export default function UserPage() {
   };
 
   const handleasbobuskunalar = async () => {
-    if (!aboutMe || !mainImageUrl || !nameForHover) {
+    if (!aboutMe || !nameForHover) {
       alert("Iltimos barcha maydonlarni to'ldiring");
       return;
     }
@@ -67,7 +66,6 @@ export default function UserPage() {
       {
         aboutme: aboutMe,
         asbob_uskunalar: tools,
-        imageUrl: mainImageUrl,
         name_for_hover: nameForHover,
       },
     ]);
@@ -79,24 +77,8 @@ export default function UserPage() {
       alert("Ma'lumotlar muvaffaqiyatli saqlandi!");
       setAboutMe("");
       setTools([]);
-      setMainImageUrl("");
       setNameForHover("");
     }
-  };
-
-  const handleMainImageUpload = async (file: File) => {
-    const { data, error } = await supabase.storage
-      .from("products")
-      .upload(`aboutpage-main/${Date.now()}-${file.name}`, file);
-
-    if (error) {
-      console.error("Rasm yuklashda xato:", error);
-      return;
-    }
-
-    const url = supabase.storage.from("products").getPublicUrl(data.path)
-      .data.publicUrl;
-    setMainImageUrl(url);
   };
 
   const supabase = createClient();
@@ -434,37 +416,6 @@ export default function UserPage() {
             placeholder="O`zingiz haqida..."
             value={aboutMe}
             onChange={(e) => setAboutMe(e.target.value)}
-          />
-
-          {/* Main Image Upload */}
-          <div className="flex flex-col gap-2">
-            <input
-              type="file"
-              onChange={(e) => {
-                if (e.target.files?.[0]) {
-                  handleMainImageUpload(e.target.files[0]);
-                }
-              }}
-              className="text-white"
-            />
-            {mainImageUrl && (
-              <Image
-                src={mainImageUrl}
-                alt="Main"
-                width={300}
-                height={150}
-                className="rounded-md"
-              />
-            )}
-          </div>
-
-          {/* Main Image Hover Name */}
-          <input
-            type="text"
-            value={nameForHover}
-            onChange={(e) => setNameForHover(e.target.value)}
-            placeholder="Main rasm uchun hover name"
-            className="w-full p-2 bg-[#1B1B1B] border-[#FFFFFF40] text-white border rounded-[8px]"
           />
 
           {/* Asbob-uskuna */}
