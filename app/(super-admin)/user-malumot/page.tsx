@@ -39,10 +39,9 @@ export default function UserPage() {
     }
   };
 
-  const handleasbobuskunalar = () => {
-    console.log("Saqlangan texnologiyalar:", tools);
-    // API yuborish uchun kod yozilsa bo`ladi
-  };
+  // const handleasbobuskunalar = () => {
+  //   console.log("Saqlangan texnologiyalar:", tools);
+  // };
   const handleDeleteTool = (index: number) => {
     const updatedTools = [...tools];
     updatedTools.splice(index, 1);
@@ -308,7 +307,7 @@ export default function UserPage() {
         <div className="max-w-[912px  ] w-[100%] h-[243px] flex flex-col bg-[#1B1B1B] p-[20px] mt-[20px] gap-[10px]">
           <div className="h-[65px] flex flex-col gap-[8px]">
             <h1 className="text-white font-bold text-[24px]">Men haqimda</h1>
-            <Image src={"/border.svg"} alt="photo" width={112} height={8} />
+            <Image src={"/order.svg"} alt="photo" width={112} height={8} />
           </div>
           <textarea
             className="border-1 bg-[#1B1B1B] border-[#FFFFFF40] pl-[20px] pt-[10px] w-[100%] text-gray-300 h-[160px] rounded-[8px]"
