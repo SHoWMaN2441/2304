@@ -34,7 +34,6 @@ export default function UserPage() {
     { image: "/a1.svg", hoverText: "" },
     { image: "/a2.svg", hoverText: "" },
   ]);
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [mainImageUrl, setMainImageUrl] = useState("");
   const [nameForHover, setNameForHover] = useState("");
 
