@@ -63,9 +63,7 @@ export default function RootLayout({
 
           {/* Main content */}
           <div
-            className={`transition-all duration-300 flex justify-center w-full ${
-              open && window.innerWidth <= 768 ? "hidden" : "block"
-            }`}
+            className={`transition-all duration-300 flex justify-center w-full `}
           >
             <div className="max-w-[952px] w-full">{children}</div>
           </div>
