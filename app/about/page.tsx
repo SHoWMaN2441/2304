@@ -27,7 +27,7 @@ export default function MalumotPage() {
         .single();
 
       if (error) {
-        console.error("Ma'lumot olishda xato:", error);
+        console.error("Ma`lumot olishda xato:", error);
       } else {
         setAboutData(data);
       }
@@ -167,7 +167,7 @@ export default function MalumotPage() {
                   {item === "b1" &&
                     "Qidiruv tizimining natijalarida sayt reytingini yaxshilash"}
                   {item === "b3" &&
-                    "Kuchli dizayn va kichik detallargacha e'tibor berish"}
+                    "Kuchli dizayn va kichik detallargacha e`tibor berish"}
                   {item === "b2" &&
                     "Yuqori darajada saytlarni sifatli ishlab chiqish"}
                   {item === "b4" &&

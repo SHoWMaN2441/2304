@@ -52,7 +52,7 @@ export default function Side_bar() {
           <NavItem href="/" label="Bosh sahifa" currentPath={pathname} />
           <NavItem href="/about" label="Haqida" currentPath={pathname} />
           <NavItem href="/loyiha" label="Loyihalar" currentPath={pathname} />
-          <NavItem href="/contact" label="Bog'lanish" currentPath={pathname} />
+          <NavItem href="/contact" label="Bog`lanish" currentPath={pathname} />
         </div>
       </div>
 

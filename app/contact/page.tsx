@@ -33,7 +33,7 @@ export default function ContactPage() {
   const user = users[0] || {};
 
   function handleClick() {
-    toast.success("Ma'lumotlar muvaffaqiyatli yuborildi!", {
+    toast.success("Ma`lumotlar muvaffaqiyatli yuborildi!", {
       position: "top-right",
       autoClose: 3000,
       hideProgressBar: false,
@@ -101,7 +101,7 @@ export default function ContactPage() {
               type="email"
             />
             <InputField
-              label="Mas'uliyatingiz*"
+              label="Mas`uliyatingiz*"
               placeholder="Frontend Developer"
               type="text"
             />

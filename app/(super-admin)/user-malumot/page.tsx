@@ -60,7 +60,7 @@ export default function UserPage() {
 
   const handleasbobuskunalar = async () => {
     if (!aboutMe || !nameForHover) {
-      alert("Iltimos barcha maydonlarni to'ldiring");
+      alert("Iltimos barcha maydonlarni to`ldiring");
       return;
     }
 
@@ -76,7 +76,7 @@ export default function UserPage() {
       console.error("Saqlashda xatolik:", error);
       alert("Xatolik yuz berdi!");
     } else {
-      alert("Ma'lumotlar muvaffaqiyatli saqlandi!");
+      alert("Ma`lumotlar muvaffaqiyatli saqlandi!");
       setAboutMe("");
       setTools([]);
       setNameForHover("");
@@ -465,7 +465,7 @@ export default function UserPage() {
                     <button
                       onClick={() => handleDeleteTool(index)}
                       className="absolute cursor-pointer top-2 right-2 bg-red-600 text-white w-6 h-6 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition"
-                      title="O'chirish"
+                      title="O`chirish"
                     >
                       ×
                     </button>
