@@ -19,6 +19,8 @@ export default function UserPage() {
   const [aboutme, setaboutme] = useState("");
   const [fields, setFields] = useState<string[]>([]);
   const [imageUrl, setImageUrl] = useState("");
+  const [githubUrl, setGithubUrl] = useState("");
+  const [viewUrl, setViewUrl] = useState("");
   const [projectImageUrl, setProjectImageUrl] = useState("");
   const [projectName, setProjectName] = useState("");
   const [projectTalab, setProjectTalab] = useState("");
@@ -119,6 +121,8 @@ export default function UserPage() {
           name: projectName,
           talab: projectTalab,
           tags: projectTags,
+          githubUrl: githubUrl,
+          viewUrl: viewUrl,
         },
       ]);
       if (error) console.error("Loyiha saqlanmadi:", error.message);
@@ -283,6 +287,7 @@ export default function UserPage() {
           </div>
         </div>
       </div>
+
       <div className="max-w-[912px] h-auto flex flex-col gap-[24px] mt-[80px]">
         <div className="h-[65px] flex flex-col gap-[8px]">
           <h1 className="text-white font-bold text-[28px]">Loyihalar</h1>
@@ -310,6 +315,22 @@ export default function UserPage() {
               type="text"
               placeholder="HashTaglar: #web, #ai,..."
             />
+            <input
+              value={githubUrl}
+              onChange={(e) => setGithubUrl(e.target.value)}
+              className="w-[280px] h-[44px] rounded-[8px] border-1 border-[#FFFFFF40] pl-[20px] text-gray-300"
+              type="text"
+              placeholder="GitHub havola"
+            />
+
+            <input
+              value={viewUrl}
+              onChange={(e) => setViewUrl(e.target.value)}
+              className="w-[280px] h-[44px] rounded-[8px] border-1 border-[#FFFFFF40] pl-[20px] text-gray-300"
+              type="text"
+              placeholder="Ko‘rish havola"
+            />
+
             <label
               htmlFor="projectImage"
               className="bg-[#1B1B1B] border-1 border-[#FFFFFF40] rounded-[8px] px-4 py-2 text-white cursor-pointer flex items-center justify-center"

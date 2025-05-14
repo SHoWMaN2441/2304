@@ -5,6 +5,7 @@ import Header from "./header";
 import useGamburgerStore from "@/store/gamburger";
 import Side_bar from "./side-bar";
 import { usePathname } from "next/navigation";
+import { ToastContainer } from "react-toastify";
 
 const poppins = localFont({
   weight: "400",
@@ -19,40 +20,57 @@ export default function RootLayout({
 }>) {
   const { open, setOpen } = useGamburgerStore();
   const pathname = usePathname();
-  console.log(pathname);
   const blockedPages = ["/super-admin", "/super-admin/user-malumot"];
+
+  const isMobile = typeof window !== "undefined" && window.innerWidth <= 768;
 
   return (
     <html lang="en">
       <body
         style={{ backgroundImage: "url('/banner1.svg')" }}
-        className={`${poppins.className} mx-auto container   antialiased bg-cover`}
+        className={`${poppins.className} mx-auto container antialiased bg-cover`}
       >
-        <div className=" max-w-full w-full mx-auto  bg-[#1A1A1A]">
-          {!blockedPages.includes(pathname) ? <Header /> : ""}
+        <ToastContainer position="top-right" autoClose={3000} />
+
+        <div className="max-w-full w-full mx-auto bg-[#1A1A1A] z-50 relative">
+          {!blockedPages.includes(pathname) && <Header />}
         </div>
+
+        {/* Body container */}
         <div
           style={{ backgroundImage: "url('/body.svg')" }}
-          className="flex  max-w-[full] w-full mx-auto min-h-screen"
+          className={`flex flex-col md:flex-row max-w-full w-full mx-auto min-h-screen ${
+            open ? "overflow-hidden" : "overflow-auto"
+          }`}
         >
+          {/* Side-bar: mobile and desktop styles */}
           <div
             onClick={() => setOpen(true)}
             className={`
-        transition-all duration-200 ease-in-out
-        min-h-screen p-2 mr-[50px]
-        bg-[#1B1B1B]
-        ${
-          open
-            ? "translate-x-0 opacity-100 min-w-[320px]"
-            : "-translate-x-full opacity-0 w-[164px]"
-        }
-        overflow-hidden
-      `}
+    md:relative top-0 left-0
+    h-full md:min-h-screen p-2
+    bg-[#1B1B1B]
+    transform transition-transform duration-300 ease-in-out
+    ${
+      open
+        ? "translate-x-0 w-full md:w-[450px]"
+        : "translate-x-[-100%] md:translate-x-0 md:w-[164px]"
+    }
+    ${open ? "opacity-100" : "opacity-0"}
+    z-40
+    ${!open ? "absolute" : ""}
+  `}
           >
             <Side_bar />
           </div>
-          <div className="max-w-[952px] container w-full  flex  justify-center">
-            {children}
+
+          {/* Main content */}
+          <div
+            className={`transition-all duration-300 flex justify-center w-full ${
+              open && window.innerWidth <= 768 ? "hidden" : "block"
+            }`}
+          >
+            <div className="max-w-[952px] w-full">{children}</div>
           </div>
         </div>
       </body>

@@ -10,6 +10,8 @@ interface Loyiha {
   name: string;
   talab: string;
   tags: string[] | string;
+  githubUrl?: string;
+  viewUrl?: string;
 }
 
 export default function LoyihaPage() {
@@ -44,75 +46,98 @@ export default function LoyihaPage() {
   };
 
   return (
-    <div className="mt-[32px] max-w-[912px] w-full">
-      <h1 className="text-white font-bold text-[32px] mb-4">Loyihalar</h1>
-      <div className="flex flex-wrap gap-[20px]">
+    <div className="mt-8 max-w-[912px] w-full px-4 sm:px-0">
+      <h1 className="text-white font-bold text-3xl mb-4">Loyihalar</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         {loyihalar.map((loyiha) => (
           <div
             key={loyiha.id}
-            className="w-[444px] h-[346px] border border-[#444] rounded-lg p-0"
+            className="relative border border-[#444] rounded-lg overflow-hidden group bg-[#1A1A1A] transition-transform duration-300 hover:scale-[1.01]"
           >
-            <div>
+            <div className="relative w-full h-[200px] sm:h-[240px]">
               <Image
                 src={loyiha.imageUrl}
                 alt={`Image of ${loyiha.name}`}
-                width={444}
-                height={240}
-                className="rounded-t-lg object-cover"
+                fill
+                className="object-cover"
               />
-            </div>
-
-            <div className="mt-[12px] w-[444px] h-[30px] flex justify-between px-1">
-              <h1 className="text-white text-[20px] font-medium">
-                {loyiha.name}
-              </h1>
-              <div className="flex items-center gap-[8px] h-[24px]">
-                <p className="text-white text-[16px] font-medium">
-                  {loyiha.talab}
-                </p>
-                <Image
-                  src={getPriorityIcon(loyiha.talab)}
-                  alt="talab"
-                  width={8}
-                  height={8}
-                />
+              <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4">
+                <Link href={loyiha.githubUrl || "#"} target="_blank">
+                  <Image
+                    src="/github.svg"
+                    alt="GitHub"
+                    width={32}
+                    height={32}
+                    className="hover:scale-110 transition-transform absolute right-2 top-2"
+                  />
+                </Link>
+                <Link href={loyiha.viewUrl || "#"} target="_blank">
+                  <Image
+                    src="/eye.jpg"
+                    alt="View"
+                    width={25}
+                    height={25}
+                    className="hover:scale-110 transition-transform rounded-full absolute top-3 right-10"
+                  />
+                </Link>
               </div>
             </div>
-            <div className="w-[444px] mt-[12px] flex flex-wrap gap-[12px] px-1">
-              {(loyiha.tags as string[]).map((tag, index) => (
-                <p
-                  key={index}
-                  className="text-[#39965F] text-[16px] font-medium"
-                >
-                  {tag}
-                </p>
-              ))}
+
+            <div className="p-4">
+              <div className="flex justify-between items-center">
+                <h2 className="text-white text-xl font-semibold">
+                  {loyiha.name}
+                </h2>
+                <div className="flex items-center gap-2">
+                  <span className="text-white text-sm">{loyiha.talab}</span>
+                  <Image
+                    src={getPriorityIcon(loyiha.talab)}
+                    alt="talab"
+                    width={10}
+                    height={10}
+                  />
+                </div>
+              </div>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {(loyiha.tags as string[]).map((tag, index) => (
+                  <span
+                    key={index}
+                    className="text-[#39965F] text-sm font-medium bg-[#1F1F1F] px-2 py-1 rounded"
+                  >
+                    #{tag}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
         ))}
       </div>
 
-      <div className="w-[912px] h-[208px] flex items-center mb-[26px] mt-[64px] pl-[20px] rounded-[12px] bg-[#1B1B1B]">
-        <Image src={"/tg_icon.svg"} alt="telegram" width={168} height={168} />
-        <div className="ml-[20px] w-[406px] h-[160px] flex flex-col gap-[12px]">
-          <h1 className="text-white text-[28px] font-bold">Telegram kanal</h1>
-          <p className="text-[18px] w-[406px] font-normal text-[#FFFFFF40]">
-            Barcha loyihalarimni telegram kanalimda <br /> ham kuzatib
-            borishingiz mumkin!
-          </p>
-          <Link href={"https://t.me/SHoWMaN777"} target="_blank">
-            <button className="w-[178px] cursor-pointer h-[40px] bg-[#39965F] rounded-[8px] text-white text-[16px] font-normal flex items-center justify-center">
-              Tashrif buyurish
-            </button>
-          </Link>
-        </div>
-        <div className="relative max-w-[280px] w-full">
-          <Image src={"/qiyalik1.svg"} alt="photo" width={144} height={144} />
-          <div className="absolute top-[-10px] right-[-10px]">
-            <Image src={"/qiyalik2.svg"} alt="photo" width={206} height={192} />
-          </div>
-        </div>
-      </div>
+      <div className="w-full mt-16 bg-[#1B1B1B] p-4 sm:p-6 md:p-8 rounded-[12px] flex flex-col sm:flex-row items-center sm:items-start gap-6 sm:gap-8 border-2 border-white">
+  <div className="min-w-[100px] sm:min-w-[120px] flex-shrink-0">
+    <Image src="/tg_icon.svg" alt="telegram" width={120} height={120} className="w-[80px] sm:w-[100px] md:w-[120px] h-auto" />
+  </div>
+
+  <div className="flex-1 text-center sm:text-left">
+    <h2 className="text-white text-xl sm:text-2xl md:text-3xl font-bold">Telegram kanal</h2>
+    <p className="text-[#FFFFFFB3] text-sm sm:text-base md:text-lg mt-2 mb-4">
+      Barcha loyihalarimni telegram kanalimda ham kuzatib borishingiz mumkin!
+    </p>
+    <Link href="https://t.me/SHoWMaN777" target="_blank">
+      <button className="bg-[#39965F] text-white px-5 py-2 rounded-md font-medium text-sm sm:text-base hover:bg-[#2e7e4c] transition-colors">
+        Tashrif buyurish
+      </button>
+    </Link>
+  </div>
+
+  <div className="relative hidden sm:block w-[120px] md:w-[144px]">
+    <Image src="/qiyalik1.svg" alt="photo" width={144} height={144} className="w-full h-auto" />
+    <div className="absolute top-[-10px] right-[-10px]">
+      <Image src="/qiyalik2.svg" alt="photo" width={206} height={192} className="w-[140px] md:w-[206px] h-auto" />
+    </div>
+  </div>
+</div>
+
     </div>
   );
 }

@@ -89,51 +89,46 @@ export default function MalumotPage() {
   }
 
   return (
-    <div>
+    <div className="px-4 md:px-0 w-full max-w-[912px] mx-auto mt-6">
       {/* Men haqimda */}
-      <div className="max-w-[912px] w-[100%] h-[398px] mt-[22px]">
-        <div className="flex flex-col gap-[8px]">
-          <h1 className="text-white font-bold text-[32px]">Men haqimda</h1>
-          <Image src="/border.svg" alt="border" width={112} height={8} />
-        </div>
-        <div className="max-w-[912px] w-[100%] h-[243px] flex flex-col mt-[20px] gap-[10px]">
-          <p className="font-medium text-[18px] text-gray-300">
-            {aboutData.aboutme}
-          </p>
-        </div>
-        <button className="bg-[#39965F] w-[181px] h-[43px] rounded-[8px] text-white flex items-center justify-center">
-          Bog`lanish
+      <section className="flex flex-col gap-4">
+        <h1 className="text-white font-bold text-2xl md:text-3xl">
+          Men haqimda
+        </h1>
+        <Image src="/border.svg" alt="border" width={112} height={8} />
+        <p className="text-gray-300 text-sm md:text-base leading-relaxed">
+          {aboutData.aboutme}
+        </p>
+        <button className="bg-[#39965F] w-full sm:w-fit px-6 py-2 rounded-md text-white">
+          Bog‘lanish
         </button>
-      </div>
+      </section>
 
-      {/* Asbob-uskunalar */}
-      <div className="w-[912px] h-auto mt-[44px] flex flex-col gap-[24px]">
-        <div className="flex flex-col gap-[8px]">
-          <h1 className="text-white font-bold text-[32px]">Asbob-uskunalar</h1>
-          <Image src="/border.svg" alt="border" width={112} height={8} />
-        </div>
-
-        <div className="max-w-[912px] w-[100%] flex flex-wrap gap-[20px]">
+      <section className="mt-12">
+        <h1 className="text-white font-bold text-2xl md:text-3xl">
+          Asbob-uskunalar
+        </h1>
+        <Image src="/border.svg" alt="border" width={112} height={8} />
+        <div className="mt-4 grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 gap-4">
           {aboutData.asbob_uskunalar.map((toolString, index) => {
             let tool: Tool;
             try {
               tool = JSON.parse(toolString);
-            } catch (error) {
-              console.error("Parsing error:", error);
+            } catch {
               return null;
             }
 
             return (
-              <div key={index} className="relative group">
+              <div key={index} className="relative group w-full aspect-[4/3]">
                 <Image
                   src={tool.image}
                   alt="asbob uskunalar"
-                  width={213}
-                  height={124}
+                  layout="fill"
+                  objectFit="cover"
                   className="rounded-md"
                 />
                 {tool.hoverText && (
-                  <div className="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center text-white text-[18px] opacity-0 group-hover:opacity-100 transition">
+                  <div className="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center text-white text-sm opacity-0 group-hover:opacity-100 transition">
                     {tool.hoverText}
                   </div>
                 )}
@@ -141,67 +136,57 @@ export default function MalumotPage() {
             );
           })}
         </div>
-      </div>
+      </section>
 
-      {/* Men nimalar qila olaman */}
-      <div className="max-w-[912px] h-[350px] mt-[64px] w-[100%] flex flex-col gap-[24px]">
-        <div className="flex flex-col gap-[8px]">
-          <h1 className="text-white font-bold text-[32px]">
-            Men nimalar qila olaman
-          </h1>
-          <Image src="/border.svg" alt="border" width={112} height={8} />
-        </div>
-
-        {/* Boshqa qismi o'zgarishsiz */}
-        <div className="w-[912px] h-[268px] flex flex-wrap gap-[20px]">
-          {/* Barcha kartochkalar */}
+      <section className="mt-16">
+        <h1 className="text-white font-bold text-2xl md:text-3xl">
+          Men nimalar qila olaman
+        </h1>
+        <Image src="/border.svg" alt="border" width={112} height={8} />
+        <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-6">
           {["b1", "b3", "b2", "b4"].map((item, index) => (
             <div
               key={index}
-              className="w-[444px] h-[124px] rounded-[12px] bg-[#1A1A1A] flex items-center justify-center"
+              className="bg-[#1A1A1A] rounded-xl p-4 flex flex-col sm:flex-row gap-4"
             >
-              <div className="w-[404px] h-[84px] flex gap-[10px] items-start">
-                <Image
-                  src={`/${item}.svg`}
-                  alt="photo"
-                  width={64}
-                  height={64}
-                />
-                <div className="w-[326px] h-[84px] flex flex-col gap-[7px]">
-                  <h1 className="text-white font-semibold text-[20px] leading-[100%] ">
-                    {item === "b1" && "Seo"}
-                    {item === "b3" && "Dizayn"}
-                    {item === "b2" && "Sifat"}
-                    {item === "b4" && "Tezkorlik"}
-                  </h1>
-                  <p className="font-medium text-[16px] text-gray-300">
-                    {item === "b1" &&
-                      "Qidiruv tizimining natijalarida sayt reytingini yaxshilash"}
-                    {item === "b3" &&
-                      "Kuchli dizayn va kichik detallargacha e'tibor berish"}
-                    {item === "b2" &&
-                      "Yuqori darajada saytlarni sifatli ishlab chiqish"}
-                    {item === "b4" &&
-                      "Qisqa muddat ichida tezkor sayt ishlab chiqish"}
-                  </p>
-                </div>
+              <Image
+                src={`/${item}.svg`}
+                alt="photo"
+                width={64}
+                height={64}
+                className="w-16 h-16 mx-auto sm:mx-0"
+              />
+              <div className="flex flex-col gap-2 text-center sm:text-left">
+                <h2 className="text-white font-semibold text-lg">
+                  {item === "b1" && "Seo"}
+                  {item === "b3" && "Dizayn"}
+                  {item === "b2" && "Sifat"}
+                  {item === "b4" && "Tezkorlik"}
+                </h2>
+                <p className="text-gray-300 text-sm">
+                  {item === "b1" &&
+                    "Qidiruv tizimining natijalarida sayt reytingini yaxshilash"}
+                  {item === "b3" &&
+                    "Kuchli dizayn va kichik detallargacha e'tibor berish"}
+                  {item === "b2" &&
+                    "Yuqori darajada saytlarni sifatli ishlab chiqish"}
+                  {item === "b4" &&
+                    "Qisqa muddat ichida tezkor sayt ishlab chiqish"}
+                </p>
               </div>
             </div>
           ))}
         </div>
-      </div>
+      </section>
 
-      {/* Mijozlar */}
-      <div className="w-[912px] h-[206px] flex flex-col mt-[64px] mb-[32px] gap-[24px]">
-        <div className="flex flex-col gap-[8px]">
-          <h1 className="text-white font-bold text-[32px]">Mijozlar</h1>
-          <Image src="/border.svg" alt="border" width={112} height={8} />
-        </div>
-        <div className="w-[912px] h-[124px] flex gap-[20px] justify-between">
-          {["webking", "market", "", ""].map((item, index) => (
+      <section className="mt-16 mb-12">
+        <h1 className="text-white font-bold text-2xl md:text-3xl">Mijozlar</h1>
+        <Image src="/border.svg" alt="border" width={112} height={8} />
+        <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+          {["webking", "market"].map((item, index) => (
             <div
               key={index}
-              className="w-[213px] h-[124px] bg-[#1A1A1A] rounded-[12px] flex items-center justify-center"
+              className="bg-[#1A1A1A] rounded-xl flex items-center justify-center aspect-[4/3]"
             >
               {item && (
                 <Image
@@ -209,12 +194,13 @@ export default function MalumotPage() {
                   alt="photo"
                   width={114}
                   height={66}
+                  className="h-12 object-contain"
                 />
               )}
             </div>
           ))}
         </div>
-      </div>
+      </section>
     </div>
   );
 }
