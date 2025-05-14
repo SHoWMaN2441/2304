@@ -22,8 +22,6 @@ export default function RootLayout({
   const pathname = usePathname();
   const blockedPages = ["/super-admin", "/super-admin/user-malumot"];
 
-  const isMobile = typeof window !== "undefined" && window.innerWidth <= 768;
-
   return (
     <html lang="en">
       <body
