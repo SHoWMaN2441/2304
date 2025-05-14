@@ -19,7 +19,6 @@ export default function Header() {
           <Image src="/hamburger.svg" alt="hamburger" width={28} height={28} />
         </button>
 
-        {/* Logo */}
         <Link href={"/"}>
           <p className="text-white text-[20px] font-semibold">
             HUSANOV <span className="text-green-600">.UZ</span>
@@ -27,7 +26,6 @@ export default function Header() {
         </Link>
       </div>
 
-      {/* Nav Links - visible only on md+ screens */}
       <div className="hidden md:flex items-center gap-6">
         <NavLink href="/" label="Bosh sahifa" active={pathname === "/"} />
         <NavLink href="/about" label="Haqida" active={pathname === "/about"} />
@@ -43,7 +41,6 @@ export default function Header() {
         />
       </div>
 
-      {/* GitHub Icon - always visible */}
       <div>
         <Link href="https://github.com/SHoWMaN2441" target="_blank">
           <Image src="/github.svg" alt="github" width={28} height={28} />
