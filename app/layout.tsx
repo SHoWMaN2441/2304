@@ -41,7 +41,6 @@ export default function RootLayout({
             open ? "overflow-hidden" : "overflow-auto"
           }`}
         >
-          {/* Side-bar: mobile and desktop styles */}
           <div
             onClick={() => setOpen(true)}
             className={`

@@ -47,7 +47,6 @@ export default function Side_bar() {
         <Image src={"/refresh.svg"} alt="Image" width={24} height={24} />
       </div>
 
-      {/* Mobile navigation menu */}
       <div className="mt-6 md:hidden px-[14px]">
         <div className="flex flex-col gap-2 mb-4">
           <NavItem href="/" label="Bosh sahifa" currentPath={pathname} />

@@ -12,7 +12,6 @@ export default function Header() {
     <div className="w-full h-[48px] flex justify-between items-center border-b border-[#FFFFFF40] rounded-t-[13px] bg-[#1A1A1A] px-4 md:px-8">
       {/* Logo va Hamburger */}
       <div className="flex items-center gap-3">
-        {/* Hamburger - only visible on mobile/tablet */}
         <button
           className="md:hidden cursor-pointer"
           onClick={() => setOpen(!open)}
