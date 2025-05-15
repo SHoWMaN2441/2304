@@ -40,8 +40,8 @@ export default function LoyihaPage() {
   }, []);
 
   const getPriorityIcon = (talab: string) => {
-    if (talab === "Yuqori") return "/aylana.svg";
-    if (talab === "Past") return "/green_card.svg";
+    if (talab === "Yuqori") return "/green_card.svg";
+    if (talab === "Past") return "/aylana.svg";
     return "/chevron.svg";
   };
 
@@ -61,13 +61,13 @@ export default function LoyihaPage() {
                 fill
                 className="object-cover"
               />
-              <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4">
+              <div className="absolute inset-0 backdrop-blur-xs bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4">
                 <Link href={loyiha.githubUrl || "#"} target="_blank">
                   <Image
                     src="/github.svg"
                     alt="GitHub"
-                    width={32}
-                    height={32}
+                    width={50}
+                    height={50}
                     className="hover:scale-110 transition-transform absolute right-2 top-2"
                   />
                 </Link>
@@ -75,9 +75,9 @@ export default function LoyihaPage() {
                   <Image
                     src="/eye.jpg"
                     alt="View"
-                    width={25}
-                    height={25}
-                    className="hover:scale-110 transition-transform rounded-full absolute top-3 right-10"
+                    width={35}
+                    height={35}
+                    className="hover:scale-110 transition-transform rounded-full absolute top-4 right-14"
                   />
                 </Link>
               </div>
@@ -114,30 +114,50 @@ export default function LoyihaPage() {
       </div>
 
       <div className="w-full mt-16 bg-[#1B1B1B] p-4 sm:p-6 md:p-8 rounded-[12px] flex flex-col sm:flex-row items-center sm:items-start gap-6 sm:gap-8 border-2 border-white">
-  <div className="min-w-[100px] sm:min-w-[120px] flex-shrink-0">
-    <Image src="/tg_icon.svg" alt="telegram" width={120} height={120} className="w-[80px] sm:w-[100px] md:w-[120px] h-auto" />
-  </div>
+        <div className="min-w-[100px] sm:min-w-[120px] flex-shrink-0">
+          <Image
+            src="/tg_icon.svg"
+            alt="telegram"
+            width={120}
+            height={120}
+            className="w-[80px] sm:w-[100px] md:w-[120px] h-auto"
+          />
+        </div>
 
-  <div className="flex-1 text-center sm:text-left">
-    <h2 className="text-white text-xl sm:text-2xl md:text-3xl font-bold">Telegram kanal</h2>
-    <p className="text-[#FFFFFFB3] text-sm sm:text-base md:text-lg mt-2 mb-4">
-      Barcha loyihalarimni telegram kanalimda ham kuzatib borishingiz mumkin!
-    </p>
-    <Link href="https://t.me/SHoWMaN777" target="_blank">
-      <button className="bg-[#39965F] text-white px-5 py-2 rounded-md font-medium text-sm sm:text-base hover:bg-[#2e7e4c] transition-colors">
-        Tashrif buyurish
-      </button>
-    </Link>
-  </div>
+        <div className="flex-1 text-center sm:text-left">
+          <h2 className="text-white text-xl sm:text-2xl md:text-3xl font-bold">
+            Telegram kanal
+          </h2>
+          <p className="text-[#FFFFFFB3] text-sm sm:text-base md:text-lg mt-2 mb-4">
+            Barcha loyihalarimni telegram kanalimda ham kuzatib borishingiz
+            mumkin!
+          </p>
+          <Link href="https://t.me/SHoWMaN777" target="_blank">
+            <button className="bg-[#39965F] text-white px-5 py-2 rounded-md font-medium text-sm sm:text-base hover:bg-[#2e7e4c] transition-colors">
+              Tashrif buyurish
+            </button>
+          </Link>
+        </div>
 
-  <div className="relative hidden sm:block w-[120px] md:w-[144px]">
-    <Image src="/qiyalik1.svg" alt="photo" width={144} height={144} className="w-full h-auto" />
-    <div className="absolute top-[-10px] right-[-10px]">
-      <Image src="/qiyalik2.svg" alt="photo" width={206} height={192} className="w-[140px] md:w-[206px] h-auto" />
-    </div>
-  </div>
-</div>
-
+        <div className="relative hidden sm:block w-[120px] md:w-[144px]">
+          <Image
+            src="/qiyalik1.svg"
+            alt="photo"
+            width={144}
+            height={144}
+            className="w-full h-auto"
+          />
+          <div className="absolute top-[-10px] right-[-10px]">
+            <Image
+              src="/qiyalik2.svg"
+              alt="photo"
+              width={206}
+              height={192}
+              className="w-[140px] md:w-[206px] h-auto"
+            />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
