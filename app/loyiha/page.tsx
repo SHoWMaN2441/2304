@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { createClient } from "@/utils/client";
+import { FaGithub } from "react-icons/fa";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -63,12 +64,9 @@ export default function LoyihaPage() {
               />
               <div className="absolute inset-0 backdrop-blur-xs bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4">
                 <Link href={loyiha.githubUrl || "#"} target="_blank">
-                  <Image
-                    src="/github.svg"
-                    alt="GitHub"
-                    width={50}
-                    height={50}
-                    className="hover:scale-110 transition-transform absolute right-2 top-2"
+                  <FaGithub
+                    size={35}
+                    className="hover:scale-110 transition-transform absolute right-2 top-4 text-green-400"
                   />
                 </Link>
                 <Link href={loyiha.viewUrl || "#"} target="_blank">
